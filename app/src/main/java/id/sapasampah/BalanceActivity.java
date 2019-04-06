@@ -1,6 +1,5 @@
 package id.sapasampah;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,8 +48,9 @@ public class BalanceActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
-                        String balance = documentSnapshot.getString("balance");
-                        String balanceDisp = "Rp " + balance;
+                        Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
+                        String balanceFormat = String.format("%,d", balance);
+                        String balanceDisp = "Rp " + balanceFormat;
                         balanceStatementText.setText(balanceDisp);
                     }
                 }

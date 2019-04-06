@@ -4,13 +4,10 @@ package id.sapasampah;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -71,14 +68,14 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
-                        String balance = documentSnapshot.getString("balance");
-                        String balanceDisp = "Rp " + balance;
+                        Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
+                        String balanceFormat = String.format("%,d", balance);
+                        String balanceDisp = "Rp " + balanceFormat;
                         homeBalance.setText(balanceDisp);
                     }
                 }
             });
         }
-
 
         ImageView homeBalanceBtn = view.findViewById(R.id.balanceBtn);
 
