@@ -46,6 +46,13 @@ public class UserFragment extends Fragment {
         ConstraintLayout userAbout = (ConstraintLayout) view.findViewById(R.id.userAbout);
         ConstraintLayout logoutLayout = view.findViewById(R.id.signoutLayout);
         TextView username = view.findViewById(R.id.userNameTextview);
+        TextView userProfileText = view.findViewById(R.id.userProfileText);
+
+        String userDisplay = user.getDisplayName();
+        username.setText(userDisplay);
+        char profileDisplay = userDisplay.charAt(0);
+        String profileDisplayString = Character.toString(profileDisplay);
+        userProfileText.setText(profileDisplayString);
 
         userBalance.setOnClickListener(new View.OnClickListener() {
             @Override

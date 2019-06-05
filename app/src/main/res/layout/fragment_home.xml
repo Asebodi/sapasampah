@@ -207,18 +207,26 @@
 
             </android.support.constraint.ConstraintLayout>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/homeRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/homeListviewTitle"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"/>
+            <!--
             <ListView
                 android:id="@+id/homeListview"
                 android:layout_width="match_parent"
                 android:layout_height="213dp"
                 android:layout_below="@id/homeListviewTitle"
                 android:layout_marginTop="2dp"
-                android:background="@color/white"></ListView>
+                android:background="@color/white"></ListView> -->
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="330dp"
-                android:layout_below="@id/homeListview"
+                android:layout_below="@id/homeRecyclerView"
                 android:layout_marginTop="8dp"
                 android:background="@color/white">
 

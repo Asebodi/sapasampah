@@ -47,7 +47,7 @@ public class BalanceItemAdapter extends BaseAdapter {
         TextView balanceTime = (TextView) view.findViewById(R.id.balanceTime);
         TextView balanceAmount = (TextView) view.findViewById(R.id.balanceAmount);
         TextView balanceType = (TextView) view.findViewById(R.id.balanceType);
-        TextView balanceStat = (TextView) view.findViewById(R.id.balanceStat);
+        TextView balanceStat = (TextView) view.findViewById(R.id.balanceTotal);
 
         String dispDate = date[position];
         String dispTime = time[position];

@@ -1,24 +1,30 @@
 package id.sapasampah;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class BalanceActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     CollectionReference mColRef = FirebaseFirestore.getInstance().collection("users");
+    FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+    RecyclerView recyclerView;
+    private BalanceAdapter adapter;
 
     ListView balanceListview;
     TextView balanceStatementText;
@@ -55,8 +61,30 @@ public class BalanceActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
 
+            setUpRecyclerView();
+        }
+    }
+
+    private void setUpRecyclerView() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            CollectionReference mColRef = mFirestore.collection("users").document(uid).collection("pickup");
+
+            recyclerView = findViewById(R.id.balanceRecyclerView);
+
+            Query query = mColRef.orderBy("epoch", Query.Direction.DESCENDING);
+            FirestoreRecyclerOptions<Balance> options = new FirestoreRecyclerOptions.Builder<Balance>().setQuery(query, Balance.class).build();
+
+            adapter = new BalanceAdapter(options);
+
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
+        }
+    }
+/*
         Resources res = getResources();
         balanceListview = (ListView) findViewById(R.id.balanceListview);
         date = res.getStringArray(R.array.balanceDate);
@@ -66,8 +94,8 @@ public class BalanceActivity extends AppCompatActivity {
         stat = res.getStringArray(R.array.balanceStat);
 
         BalanceItemAdapter adapter = new BalanceItemAdapter(getApplicationContext(), date, time, amount, type, stat);
-        balanceListview.setAdapter(adapter);
-        }
+        balanceListview.setAdapter(adapter); */
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -75,5 +103,17 @@ public class BalanceActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

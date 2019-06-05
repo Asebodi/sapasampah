@@ -2,26 +2,27 @@ package id.sapasampah;
 
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -43,6 +44,10 @@ public class HomeFragment extends Fragment {
     TextView homeBalance;
     NotificationFragment notificationFragment;
 
+    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+    private HomeRecyclerAdapter homeRecyclerAdapter;
+    RecyclerView recyclerView;
+
     FirebaseAuth mAuth;
     CollectionReference mColRef = FirebaseFirestore.getInstance().collection("users");
 
@@ -58,6 +63,8 @@ public class HomeFragment extends Fragment {
         LinearLayout homePdam = view.findViewById(R.id.homePdam);
         LinearLayout homeMore = view.findViewById(R.id.homeMore);
 
+        recyclerView = view.findViewById(R.id.homeRecyclerView);
+
         homeBalance = view.findViewById(R.id.balanceText);
 
         mAuth = FirebaseAuth.getInstance();
@@ -69,12 +76,14 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
-                        String balanceFormat = String.format("%,d", balance);
+                        String balanceFormat = String.format("%,d", balance); //TODO: change this to . instead of ,
                         String balanceDisp = "Rp " + balanceFormat;
                         homeBalance.setText(balanceDisp);
                     }
                 }
             });
+
+            setUpRecyclerView();
         }
 
         ImageView homeBalanceBtn = view.findViewById(R.id.balanceBtn);
@@ -87,7 +96,7 @@ public class HomeFragment extends Fragment {
         mNavView = view.findViewById(R.id.mainMenu);
         //final View history = mNavView.findViewById(R.id.notifMenu);
 
-        ListView homeListview;
+        RecyclerView homeRecyclerView;
         String[] date;
         String[] time;
         String[] amount;
@@ -144,19 +153,35 @@ public class HomeFragment extends Fragment {
         });
 
 
+        /*
         //Home fragment quick history listview
         Resources res = getResources();
-        homeListview = (ListView) view.findViewById(R.id.homeListview);
+
         date = res.getStringArray(R.array.historyDate);
         time = res.getStringArray(R.array.historyTime);
         amount = res.getStringArray(R.array.historyAmount);
         weight = res.getStringArray(R.array.historyWeight);
 
         HomeItemAdapter adapter = new HomeItemAdapter(getContext(),date,time,amount,weight);
-        homeListview.setAdapter(adapter);
+        homeListview.setAdapter(adapter);  */
 
         return view;
-        //TODO: Fetch data from Firebase
+    }
+
+    public void setUpRecyclerView() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            CollectionReference mColRef = mFirestore.collection("users").document(uid).collection("pickup");
+
+            Query query = mColRef.orderBy("epoch", Query.Direction.DESCENDING);
+            FirestoreRecyclerOptions<HomeRecycler> options = new FirestoreRecyclerOptions.Builder<HomeRecycler>().setQuery(query, HomeRecycler.class).build();
+
+            homeRecyclerAdapter = new HomeRecyclerAdapter(options);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setAdapter(homeRecyclerAdapter);
+        }
     }
 
     ImageListener imageListener = new ImageListener() {
@@ -166,10 +191,21 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    private void setFragment(Fragment fragment){
+    /*private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrame, fragment);
         fragmentTransaction.commit();
+    }*/
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        homeRecyclerAdapter.startListening();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        homeRecyclerAdapter.stopListening();
+    }
 }

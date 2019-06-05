@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class HomeItemAdapter extends BaseAdapter {
 
     String[] date;
@@ -42,7 +40,7 @@ public class HomeItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = mInflater.inflate(R.layout.home_listview, null);
+        View view = mInflater.inflate(R.layout.home_recyclerview, null);
         TextView homeDate = (TextView) view.findViewById(R.id.homeDate);
         TextView homeTime = (TextView) view.findViewById(R.id.homeTime);
         TextView homeAmount = (TextView) view.findViewById(R.id.homeAmount);

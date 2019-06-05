@@ -109,6 +109,7 @@ public class SignupInfoActivity extends AppCompatActivity {
                     user.updateProfile(profileUpdate);
 
                     Map<String, Object> userData = new HashMap<String, Object>();
+                    userData.put("username", username);
                     userData.put("nik", nik);
                     userData.put("province",province);
                     userData.put("city",city);

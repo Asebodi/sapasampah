@@ -64,7 +64,7 @@ public class QrActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String path = saveImage(bitmap);
-                Toast.makeText(QrActivity.this, "QR code telah diunduh di " + path, Toast.LENGTH_SHORT).show();
+                Toast.makeText(QrActivity.this, "QR code telah diunduh" + path, Toast.LENGTH_SHORT).show();
             }
         });
     }

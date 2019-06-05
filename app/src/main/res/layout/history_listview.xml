@@ -50,7 +50,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView41" />
 
     <TextView
-        android:id="@+id/historyAmount"
+        android:id="@+id/oldstuff3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

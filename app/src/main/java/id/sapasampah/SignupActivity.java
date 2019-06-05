@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText usernameSignup, emailSignup, passwordSignup, rePasswordSignup;
+    EditText emailSignup, passwordSignup, rePasswordSignup;
     ImageView nextImg;
     ProgressBar progressbar;
     private FirebaseAuth mAuth;
