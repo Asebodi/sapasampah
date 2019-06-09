@@ -18,6 +18,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.Locale;
+
 public class BalanceActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
@@ -55,7 +57,7 @@ public class BalanceActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
-                        String balanceFormat = String.format("%,d", balance);
+                        String balanceFormat = String.format(Locale.US, "%,d", balance).replace(",", ".");
                         String balanceDisp = "Rp " + balanceFormat;
                         balanceStatementText.setText(balanceDisp);
                     }

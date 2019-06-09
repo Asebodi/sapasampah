@@ -23,10 +23,10 @@ public class HomeRecyclerAdapter extends FirestoreRecyclerAdapter<HomeRecycler, 
 
     @Override
     protected void onBindViewHolder(@NonNull HomeHolder holder, int position, @NonNull HomeRecycler model) {
-        holder.homeWeight.setText(model.getHomeWeight());
-        holder.homeTime.setText(model.getHomeTime());
-        holder.homeDate.setText(model.getHomeDate());
-        holder.homeAmount.setText(model.getHomeAmount());
+        holder.homeWeight.setText(model.getWeight());
+        holder.homeTime.setText(model.getTime());
+        holder.homeDate.setText(model.getDate());
+        holder.homeAmount.setText(model.getAmount());
     }
 
     @NonNull

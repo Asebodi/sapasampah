@@ -14,7 +14,7 @@
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/preCredToolbar"
         tools:layout_editor_absoluteX="0dp">
-        <!-- TODO: change editText textColor to something else-->
+
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
@@ -44,6 +44,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="081223445678"
             android:background="@drawable/edittext_rounded"
             android:defaultFocusHighlightEnabled="false"
             android:ems="10"

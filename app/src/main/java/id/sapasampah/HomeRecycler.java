@@ -1,7 +1,7 @@
 package id.sapasampah;
 
 public class HomeRecycler {
-    String homeDate, homeWeight, homeAmount, homeTime;
+    String date, weight, amount, time;
     Integer homePriority;
 
     public HomeRecycler() {
@@ -9,26 +9,26 @@ public class HomeRecycler {
     }
 
     public HomeRecycler(String date, String weight, String amount, String time) {
-        this.homeDate = date;
-        this.homeAmount = amount;
-        this.homeTime = time;
-        this.homeWeight = weight;
+        this.date = date;
+        this.amount = amount;
+        this.time = time;
+        this.weight = weight;
     }
 
-    public String getHomeDate() {
-        return homeDate;
+    public String getDate() {
+        return date;
     }
 
-    public String getHomeWeight() {
-        return homeWeight;
+    public String getWeight() {
+        return weight;
     }
 
-    public String getHomeAmount() {
-        return homeAmount;
+    public String getAmount() {
+        return amount;
     }
 
-    public String getHomeTime() {
-        return homeTime;
+    public String getTime() {
+        return time;
     }
 
 }

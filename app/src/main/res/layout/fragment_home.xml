@@ -53,6 +53,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
         layout_height="wrap_content"
         layout_width="match_parent"
         android:layout_width="wrap_content"
@@ -207,26 +208,28 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/homeRecyclerView"
+            <RelativeLayout
+                android:id="@+id/recyclerWrapper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/homeListviewTitle"
-                android:layout_marginTop="2dp"
-                android:background="@color/white"/>
-            <!--
-            <ListView
-                android:id="@+id/homeListview"
-                android:layout_width="match_parent"
-                android:layout_height="213dp"
-                android:layout_below="@id/homeListviewTitle"
-                android:layout_marginTop="2dp"
-                android:background="@color/white"></ListView> -->
+                android:layout_marginTop="2dp">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/homeRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="224dp"
+                    android:background="@color/colorBg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </RelativeLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="330dp"
-                android:layout_below="@id/homeRecyclerView"
+                android:layout_below="@id/recyclerWrapper"
                 android:layout_marginTop="8dp"
                 android:background="@color/white">
 

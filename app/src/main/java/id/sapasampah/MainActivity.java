@@ -1,20 +1,15 @@
 package id.sapasampah;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        mNavView = (BottomNavigationView) findViewById(R.id.mainMenu);
-        mFrameLayout = (FrameLayout) findViewById(R.id.mainFrame);
+        mNavView = findViewById(R.id.mainMenu);
+        mFrameLayout = findViewById(R.id.mainFrame);
 
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
@@ -79,19 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        /*Button homeBtn = (Button) findViewById(R.id.homeBtn);
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String google = "google.com";
-                Uri link = Uri.parse(google);
-
-                Intent gotoGoogle = new Intent(Intent.ACTION_VIEW, link);
-                if(gotoGoogle.resolveActivity(getPackageManager()) != null){
-                    startActivity(gotoGoogle);
-                }
-            }
-        });*/
     }
 
     private void setFragment(Fragment Fragment) {

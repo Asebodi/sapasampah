@@ -43,8 +43,6 @@
     <string name="addrPost">Kode Pos:</string>
     <string name="addrFull">Alamat Lengkap:</string>
 
-    <!-- Below is the temporary offline data for the ListView. In the future it should be replaced with an actual data from Firebase-->
-
     <string name="historyStat">Pengambilan Sampah</string>
     <string name="prepaid">Prabayar</string>
     <string name="postpaid">Pascabayar</string>
@@ -52,89 +50,4 @@
     <string name="creditpost">Pulsa\nPascabayar</string>
     <string name="signout">Sign Out</string>
 
-    <array name="historyDate">
-        <item>6 Januari 2019</item>
-        <item>4 Januari 2019</item>
-        <item>3 Januari 2019</item>
-        <item>2 Januari 2019</item>
-        <item>31 Desember 2019</item>
-        <item>30 Desember 2019</item>
-    </array>
-
-    <array name="historyTime">
-        <item>09:21 WIB</item>
-        <item>08:53 WIB</item>
-        <item>10:42 WIB</item>
-        <item>09:13 WIB</item>
-        <item>08:41 WIB</item>
-        <item>09:21 WIB</item>
-    </array>
-
-    <array name="historyAmount">
-        <item>Rp2.400</item>
-        <item>Rp2.200</item>
-        <item>Rp2.700</item>
-        <item>Rp3.900</item>
-        <item>Rp2.900</item>
-        <item>Rp2.800</item>
-    </array>
-
-    <array name="historyWeight">
-        <item>2,4 Kg</item>
-        <item>2,2 Kg</item>
-        <item>2,7 Kg</item>
-        <item>3,9 Kg</item>
-        <item>2,9 Kg</item>
-        <item>2,8 Kg</item>
-    </array>
-
-    <array name="balanceDate">
-        <item>6 Januari 2019</item>
-        <item>6 Januari 2019</item>
-        <item>4 Januari 2019</item>
-        <item>3 Januari 2019</item>
-        <item>2 Januari 2019</item>
-        <item>31 Desember 2019</item>
-        <item>30 Desember 2019</item>
-    </array>
-
-    <array name="balanceTime">
-        <item>17:43 WIB</item>
-        <item>09:21 WIB</item>
-        <item>08:53 WIB</item>
-        <item>10:42 WIB</item>
-        <item>09:13 WIB</item>
-        <item>08:41 WIB</item>
-        <item>09:21 WIB</item>
-    </array>
-
-    <array name="balanceAmount">
-        <item>-Rp11.000</item>
-        <item>+Rp2.400</item>
-        <item>+Rp2.200</item>
-        <item>+Rp2.700</item>
-        <item>+Rp3.900</item>
-        <item>+Rp2.900</item>
-        <item>+Rp2.800</item>
-    </array>
-
-    <array name="balanceStat">
-        <item>Saldo Rp5.900</item>
-        <item>Saldo Rp16.900</item>
-        <item>Saldo Rp14.500</item>
-        <item>Saldo Rp12.300</item>
-        <item>Saldo Rp9.600</item>
-        <item>Saldo Rp5.700</item>
-        <item>Saldo Rp2.800</item>
-    </array>
-
-    <array name="balanceType">
-        <item>Pembelian Pulsa Prabayar</item>
-        <item>Pengambilan Sampah</item>
-        <item>Pengambilan Sampah</item>
-        <item>Pengambilan Sampah</item>
-        <item>Pengambilan Sampah</item>
-        <item>Pengambilan Sampah</item>
-        <item>Pengambilan Sampah</item>
-    </array>
 </resources>

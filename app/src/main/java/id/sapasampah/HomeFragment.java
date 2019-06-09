@@ -26,6 +26,8 @@ import com.google.firebase.firestore.Query;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.Locale;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,8 +56,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_home, container, false);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         LinearLayout homeElectr = view.findViewById(R.id.homeElectr);
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
-                        String balanceFormat = String.format("%,d", balance); //TODO: change this to . instead of ,
+                        String balanceFormat = String.format(Locale.US, "%,d", balance).replace(",", ".");
                         String balanceDisp = "Rp " + balanceFormat;
                         homeBalance.setText(balanceDisp);
                     }
@@ -84,6 +84,10 @@ public class HomeFragment extends Fragment {
             });
 
             setUpRecyclerView();
+        } else {
+            Intent goLogin = new Intent(getContext(), LoginActivity.class);
+            startActivity(goLogin);
+            goLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }
 
         ImageView homeBalanceBtn = view.findViewById(R.id.balanceBtn);
@@ -94,13 +98,6 @@ public class HomeFragment extends Fragment {
 
         notificationFragment = new NotificationFragment();
         mNavView = view.findViewById(R.id.mainMenu);
-        //final View history = mNavView.findViewById(R.id.notifMenu);
-
-        RecyclerView homeRecyclerView;
-        String[] date;
-        String[] time;
-        String[] amount;
-        String[] weight;
 
         homeElectr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,19 +149,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-        /*
-        //Home fragment quick history listview
-        Resources res = getResources();
-
-        date = res.getStringArray(R.array.historyDate);
-        time = res.getStringArray(R.array.historyTime);
-        amount = res.getStringArray(R.array.historyAmount);
-        weight = res.getStringArray(R.array.historyWeight);
-
-        HomeItemAdapter adapter = new HomeItemAdapter(getContext(),date,time,amount,weight);
-        homeListview.setAdapter(adapter);  */
-
         return view;
     }
 
@@ -179,6 +163,7 @@ public class HomeFragment extends Fragment {
 
             homeRecyclerAdapter = new HomeRecyclerAdapter(options);
             recyclerView.setHasFixedSize(true);
+            recyclerView.setNestedScrollingEnabled(false);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(homeRecyclerAdapter);
         }
@@ -191,16 +176,12 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    /*private void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mainFrame, fragment);
-        fragmentTransaction.commit();
-    }*/
 
     @Override
     public void onStart() {
         super.onStart();
         homeRecyclerAdapter.startListening();
+
     }
 
     @Override
