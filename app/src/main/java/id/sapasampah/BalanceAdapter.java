@@ -26,7 +26,7 @@ public class BalanceAdapter extends FirestoreRecyclerAdapter<Balance, BalanceAda
         holder.balanceDate.setText(model.getDate());
         holder.balanceTime.setText(model.getTime());
         holder.balanceAmount.setText(model.getAmount());
-        holder.balanceTotal.setText("Saldo: " + model.getTotal());
+        holder.balanceTotal.setText("Balance: Rp" + model.getTotal());
     }
 
     @NonNull

@@ -16,17 +16,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.Locale;
+
+import javax.annotation.Nullable;
 
 
 /**
@@ -40,7 +43,7 @@ public class HomeFragment extends Fragment {
     }
 
     CarouselView homeCarouselview;
-    int[] carouselSrc = {R.drawable.carousel1, R.drawable.carousel2};
+    int[] carouselSrc = {R.drawable.carrousel_anyar, R.drawable.carrousel_anyar2};
     FrameLayout mainFrame;
     BottomNavigationView mNavView;
     TextView homeBalance;
@@ -71,10 +74,10 @@ public class HomeFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String uid = user.getUid();
-            mColRef.document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            mColRef.document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.exists()) {
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot != null) {
                         Integer balance = Integer.parseInt(documentSnapshot.getString("balance"));
                         String balanceFormat = String.format(Locale.US, "%,d", balance).replace(",", ".");
                         String balanceDisp = "Rp " + balanceFormat;
@@ -180,13 +183,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        homeRecyclerAdapter.startListening();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            homeRecyclerAdapter.startListening();
+        }
 
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        homeRecyclerAdapter.stopListening();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            homeRecyclerAdapter.stopListening();
+        }
+
     }
 }

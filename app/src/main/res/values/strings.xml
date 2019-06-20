@@ -1,53 +1,55 @@
 <resources>
     <string name="app_name">SapaSampah</string>
-    <string name="homeMenu">Beranda</string>
-    <string name="notifMenu">Riwayat</string>
-    <string name="userMenu">Akun</string>
+    <string name="homeMenu">Home</string>
+    <string name="notifMenu">History</string>
+    <string name="userMenu">Account</string>
 
 
-    <string name="electricity">Listrik\nPrabayar</string>
-    <string name="credit">Pulsa\nPrabayar</string>
-    <string name="pdam">Air\nPDAM</string>
-    <string name="more">Lainnya\n</string>
-    <string name="lastTake">Pengambilan sampah terakhir:</string>
-    <string name="moreHistory">Riwayat lengkap</string>
-    <string name="berita">Berita</string>
-    <string name="balanceStatement">Saldo Anda:</string>
-    <string name="addrMenu">Alamat</string>
-    <string name="qrMenu">QR Code Saya</string>
-    <string name="helpMenu">Panduan Pengguna</string>
-    <string name="aboutMenu">Tentang Aplikasi</string>
+    <string name="electricity">Prepaid\nElectricity</string>
+    <string name="credit">Prepaid\nPhone Credit</string>
+    <string name="pdam">Water\nBill</string>
+    <string name="more">More\n</string>
+    <string name="lastTake">Last trash pickup:</string>
+    <string name="moreHistory">Full History</string>
+    <string name="berita">News</string>
+    <string name="balanceStatement">Your balance:</string>
+    <string name="addrMenu">Address</string>
+    <string name="qrMenu">My QR Code</string>
+    <string name="helpMenu">User guide</string>
+    <string name="aboutMenu">About App</string>
     <string name="logout">Log Out</string>
-    <string name="tel">Nomor Telepon:</string>
-    <string name="beli">Beli</string>
+    <string name="tel">Phone number:</string>
+    <string name="beli">Buy</string>
     <string name="value">Nominal:</string>
-    <string name="electr">Nomor Meter/ID Pelanggan:</string>
-    <string name="qrcode">Print gambar QR Code ini dan tempelkan pada\ntempat sampah Anda</string>
-    <string name="download">Unduh QR Code</string>
+    <string name="electr">Meter Number/ User ID:</string>
+    <string name="qrcode">Print this QR Code and stick it\n on your trash container</string>
+    <string name="download">Download QR Code</string>
     <string name="actPdam">Area:</string>
-    <string name="actPdam1">Nomor Pelanggan:</string>
+    <string name="actPdam1">User Number:</string>
 
-    <string name="guide1">1. Petugas SapaSampah.id akan mengambil sampah Anda di alamat yang sudah ditentukan.</string>
-    <string name="guide2">2. Petugas akan menimbang sampah Anda dan men-scan QR Code yang sudah ditempelkan oleh pengguna. QR code dapat diuduh di halaman QR Code Saya.</string>
-    <string name="guide3">3. Pengguna dapat mengkategoriasikan sampahnya berdasarakan tiga tipe, yaitu organik, non-organik, dan plastik.</string>
-    <string name="guide4">4. Jumlah e-money yang didapatkan akan secara otomatis masuk ke akun SapaSampah.id pengguna.</string>
+    <!--USER GUIDE-->
+    <string name="guide1">1. Sapasampah operator will take your trash in the address that you provided.</string>
+    <string name="guide2">2. The operator will weigh your trash and scan your QR Code on your trash bin. You can download the QR Code in the My QR Code menu.</string>
+    <string name="guide3">3. You can either put their trash in a single container or separate them by the Organic, Non-organic, and Plastic category.</string>
+    <string name="guide4">4. The e-money balance will automatically be inserted to the your account.</string>
 
-    <string name="price">Harga sampah:</string>
-    <string name="price1">- Rp1.000/kg untuk tiap tipe sampah yang dikategorisaikan.</string>
-    <string name="price2">- Rp500/kg untuk sampah yang tidak dikategiorisasikan.</string>
+    <string name="price">Trash Prices:</string>
+    <string name="price1">- Rp1.000/kg for categorized trashes.</string>
+    <string name="price2">- Rp500/kg for un-categorized trashes.</string>
+    <!--END OF USER GUIDE-->
 
-    <string name="addrName">Nama:</string>
-    <string name="addrProvince">Provinsi:</string>
-    <string name="addrCity">Kota/Kabupaten:</string>
-    <string name="addrKecamatan">Kecamatan:</string>
-    <string name="addrPost">Kode Pos:</string>
-    <string name="addrFull">Alamat Lengkap:</string>
+    <string name="addrName">Name:</string>
+    <string name="addrProvince">Province:</string>
+    <string name="addrCity">City:</string>
+    <string name="addrKecamatan">District:</string>
+    <string name="addrPost">Postal Code:</string>
+    <string name="addrFull">Full Address:</string>
 
-    <string name="historyStat">Pengambilan Sampah</string>
-    <string name="prepaid">Prabayar</string>
-    <string name="postpaid">Pascabayar</string>
-    <string name="electrpost">Listrik\nPascabayar</string>
-    <string name="creditpost">Pulsa\nPascabayar</string>
+    <string name="historyStat">Trash Pickup</string>
+    <string name="prepaid">Prepaid</string>
+    <string name="postpaid">Postpaid</string>
+    <string name="electrpost">Postpaid\nElectricity</string>
+    <string name="creditpost">Postpaid\nPhone Credit</string>
     <string name="signout">Sign Out</string>
 
 </resources>
